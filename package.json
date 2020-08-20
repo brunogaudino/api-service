@@ -1,0 +1,33 @@
+{
+  "name": "api-service",
+  "version": "1.0.0",
+  "description": "A simple api crud service",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "rundev": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunogaudino/api-service.git"
+  },
+  "author": "Bruno C. A. Gaudino",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.12.3",
+    "consign": "^0.1.6",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "ejs": "^2.7.4",
+    "express": "^4.12.3",
+    "lowdb": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "bugs": {
+    "url": "https://github.com/brunogaudino/api-service/issues"
+  },
+  "homepage": "https://github.com/brunogaudino/api-service#readme"
+}
