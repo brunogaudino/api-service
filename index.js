@@ -15,7 +15,7 @@ const router = express.Router();
 
 // Routes 
 const indexRoute = require('./app/routes/index-route');
-//const readRoute = require('./app/routes/read-route');
+const readRoute = require('./app/routes/read-route');
 // const productRoute = require('./routes/product-route');
 // const customerRoute = require('./routes/customer-route');
 // const orderRoute = require('./routes/order-route');
@@ -35,11 +35,11 @@ main.use(function (req, res, next) {
     next();
 });
 
-// main.set('view engine', 'ejs');
-// main.set('views', './app/views/');
+main.set('view engine', 'ejs');
+main.set('views', './app/views/');
 
 main.use('/', indexRoute);
-//main.use('/read', readRoute);
+main.use('/read', readRoute);
 // main.use('/products', productRoute);
 // main.use('/customers', customerRoute);
 // main.use('/orders', orderRoute);

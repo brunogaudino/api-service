@@ -1,0 +1,21 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List information</title>
+</head>
+<body>
+    <h1>List information</h1>
+    <hr><br>
+    <% for ( result of repository){%>
+        <%= result.idTimeStamp%> |
+        <%= result.name%> |
+        <%= result.email%> |
+        <%= result.zip%> |
+        <%= result.date%> |
+        <%= result.assign%> |
+        <%= result.url%><br><br><br>
+    <%}%>
+</body>
+</html>
