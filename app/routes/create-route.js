@@ -2,8 +2,8 @@
 
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/read-controller');
+const controller = require('../controllers/create-controller');
 
-router.get('/', controller.readData);
+router.post('/', controller.createData);
 
 module.exports = router;

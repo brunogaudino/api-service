@@ -4,8 +4,8 @@
   "description": "A simple api crud service",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "rundev": "nodemon server.js",
+    "start": "node bin/server",
+    "dev": "node node_modules/nodemon/bin/nodemon bin/server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,12 +16,12 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.12.3",
-    "consign": "^0.1.6",
     "cors": "^2.8.5",
-    "dotenv": "^8.0.0",
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
     "ejs": "^2.7.4",
-    "express": "^4.12.3",
-    "lowdb": "^1.0.0"
+    "express": "^4.17.1",
+    "mongoose": "^5.10.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
