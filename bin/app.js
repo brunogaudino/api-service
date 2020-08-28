@@ -3,6 +3,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const repository = require('../app/repositories/connection-repository');
 
 const main = express();
 main.use(express.json());
@@ -20,28 +21,8 @@ mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
     console.log('Error ', error);
 });
 
-const db = mongoose.connection;
-
-db.on('connected', () => {
-    console.log('Mongoose default connection is open');
-});
-
-db.on('error', err => {
-    console.log(`Mongoose default connection has occured \n${err}`);
-});
-
-db.on('disconnected', () => {
-    console.log('Mongoose default connection is disconnected');
-});
-
-process.on('SIGINT', () => {
-    db.close(() => {
-        console.log(
-        'Mongoose default connection is disconnected due to application termination'
-        );
-        process.exit(0);
-    });
-});
+//Connection with Database
+const db = repository.connectionReturn(mongoose.connection);
 
 // Models
 const Data = require('../app/models/data-model');
@@ -65,7 +46,9 @@ main.use('/delete', deleteRoute);
 module.exports = main;
 
 /**
- * Access to database
+ * Access to Mongo Atlas database
+ * Database name: DataBase
+ * Collection name: databases
  * User: useradmin
  * password: JFXl1WYouvvukUcK
  */

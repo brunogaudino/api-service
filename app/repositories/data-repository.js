@@ -6,6 +6,11 @@ exports.readData = async() => {
     return res;
 }
 
+exports.readDataById = async(id) => {
+    const res = await Data.findById(id,'name email -_id').exec();
+    return res;
+}
+
 exports.createData = async data => {
     const register = new Data(data);
     await register.save();
