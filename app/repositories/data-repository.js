@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Data = mongoose.model('DataBase');
 
 exports.readData = async() => {
-    const res = await Data.find({},'name email -_id').exec();
+    const res = await Data.find({},'name email').exec();
     return res;
 }
 
