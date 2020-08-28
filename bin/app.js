@@ -7,13 +7,12 @@ require('dotenv').config();
 const main = express();
 main.use(express.json());
 main.use(express.urlencoded({extended:true}));
-//const router = express.Router();
 
 // Database
 mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
-    // useFindAndModify: true,
+    useUnifiedTopology: true,
+    useFindAndModify: true
     // useCreateIndex: true 
 }).then(() => {
     console.log('Database connected!');
@@ -51,6 +50,8 @@ const Data = require('../app/models/data-model');
 const indexRoute = require('../app/routes/index-route');
 const readRoute = require('../app/routes/read-route');
 const createRoute = require('../app/routes/create-route');
+const updateRoute = require('../app/routes/update-route');
+const deleteRoute = require('../app/routes/delete-route');
 
 main.set('view engine', 'ejs');
 main.set('views', './app/views/');
@@ -58,8 +59,8 @@ main.set('views', './app/views/');
 main.use('/', indexRoute);
 main.use('/create', createRoute);
 main.use('/read', readRoute);
-// main.use('/update', updateRoute);
-// main.use('/delete', deleteRoute);
+main.use('/update', updateRoute);
+main.use('/delete', deleteRoute);
 
 module.exports = main;
 
