@@ -1,6 +1,6 @@
 'use strict';
 
-const repository = require('../repositories/data-repository');
+const repository = require('../repositories/read-repository');
 
 exports.readData = async(req, res) => {
     try {

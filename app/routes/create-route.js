@@ -10,4 +10,9 @@ router.post('/', [
     check('email').isLength({ min: 10, max: 50 }).withMessage("The email must be a minimum of 10 characters and a maximum of 50.")
 ],controller.createData);
 
+//With auth
+router.post('/authenticate', controller.authenticate);
+//router.post('/authorize', authService.authorize, controller.createData);
+
+
 module.exports = router;

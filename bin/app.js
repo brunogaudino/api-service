@@ -3,6 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const config = require('../app/configs/config');
 require('dotenv').config();
 const repository = require('../app/repositories/connection-repository');
 
