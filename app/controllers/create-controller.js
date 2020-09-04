@@ -1,22 +1,26 @@
 'use strict';
 
-const { validationResult } = require('express-validator');
+const ValidationService = require('../services/validation-service');
 const repository = require('../repositories/create-repository');
 const md5 = require('md5');
 const authService = require('../services/auth-service');
 
 exports.createData = async(req, res) => {
-  const {errors} = validationResult(req);
-  
-  if(errors.length > 0) {
-    return res.status(400).send({message: errors})
+  let validation = new ValidationService();
+  validation.hasMinLen(req.body.name, 3, 'The name must be at least 3 characters long.');
+  validation.isEmail(req.body.email, 'Invalid email.');
+  validation.hasMinLen(req.body.password, 6, 'The password must be a minimum of 6 characters.');
+
+  if (!validation.isValid()) {
+    res.status(400).send(validation.errors()).end();
+    return;
   }
 
   try {
     await repository.createData({
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password
+      password: md5(req.body.password + global.SALT_KEY)
     })
     res.status(201).send({message: 'Info successfully registered'});
   } catch (e) {
@@ -47,8 +51,8 @@ exports.authenticate = async(req, res, next) => {
       res.status(201).send({
           token: token,
           data: {
-              email: data.email,
-              name: data.name
+            email: data.email,
+            name: data.name
           }
       });
   } catch (e) {

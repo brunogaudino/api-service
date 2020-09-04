@@ -63,4 +63,11 @@ module.exports = main;
  * Collection name: databases
  * User: useradmin
  * password: JFXl1WYouvvukUcK
+ * data format
+ * {
+        "_id": "5f4d4ce050360d38b88661d9",
+        "name": "Name",
+        "email": "email@email.com",
+        "password": "password"
+    }
  */
