@@ -33,7 +33,7 @@ exports.authenticate = async(req, res, next) => {
   try {
       const data = await repository.authenticate({
           email: req.body.email,
-          password: md5(req.body.password + global.SALT_KEY)
+          password: req.body.password
       });
       if (!data) {
           res.status(404).send({

@@ -1,11 +1,11 @@
 'use strict';
 
-const repository = require('../repositories/data-repository');
+const repository = require('../repositories/update-repository');
 
-exports.updateData = async(req, res) => {
+exports.putUpdateData = async(req, res) => {
         
     try {
-        await repository.updateData(req.params.id, req.body);
+        await repository.putUpdateData(req.params.id, req.body);
         res.status(200).send({
             message: 'Data updated successfully!'
         });
