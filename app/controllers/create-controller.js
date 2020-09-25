@@ -32,14 +32,16 @@ exports.authenticate = async(req, res, next) => {
 
   try {
       const data = await repository.authenticate({
-          email: req.body.email,
-          password: req.body.password
+        id: req.body.id,
+        email: req.body.email,
+        password: req.body.password
       });
+
       if (!data) {
-          res.status(404).send({
-              message: 'Username or Password is invalid'
-          });
-          return;
+        res.status(404).send({
+          message: 'Username or Password is invalid'
+        });
+        return;
       }
 
       const token = await authService.generateToken({
@@ -51,6 +53,7 @@ exports.authenticate = async(req, res, next) => {
       res.status(201).send({
           token: token,
           data: {
+            id: data.id,
             email: data.email,
             name: data.name
           }
@@ -61,3 +64,39 @@ exports.authenticate = async(req, res, next) => {
       });
   }
 };
+
+exports.refreshToken = async(req, res, next) => {
+  try {
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const data = await authService.decodeToken(token);
+    const getDataById = await repository.readDataById(data.id);
+
+    if (!getDataById) {
+      res.status(404).send({
+          message: 'Data not found'
+      });
+      return;
+    }
+
+    const tokenData = await authService.generateToken({
+      id: data.id,
+      email: data.email,
+      name: data.name
+    });
+
+    res.status(201).send({
+      token: token,
+      data: {
+        email: data.email,
+        name: data.name,
+        id: data.id,
+        password: data.password
+      }
+    });
+
+  } catch (error) {
+    res.status(500).send({
+      message: 'Failed to process your request'
+    });
+  }
+}

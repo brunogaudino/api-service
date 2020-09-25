@@ -8,8 +8,14 @@ exports.createData = async data => {
 
 exports.authenticate = async(data) => {
   const res = await Data.findOne({
+      id: data.id,
       email: data.email,
       password: data.password
   });
+  return res;
+}
+
+exports.readDataById = async(id) => {
+  const res = await Data.findById(id);
   return res;
 }
