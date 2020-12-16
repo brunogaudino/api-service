@@ -18,6 +18,11 @@ const schema = new Schema({
         type: String,
         required: true,
         trim: true
+    },
+    isAdmin: {
+        type: Boolean,
+        required: true,
+        trim: true
     }
 });
 

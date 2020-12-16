@@ -10,7 +10,7 @@ router.post('/', controller.createData);
 //Auth to use authenticate for generate token
 router.post('/authenticate', controller.authenticate);
 
-//Auth refresh token
+//Auth refresh token using authorize method
 router.post('/refresh-token', authService.authorize, controller.refreshToken);
 
 module.exports = router;

@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
 //View template example
 router.get('/home', async (req, res, next) => {
     try {
-        const data = await Data.find({},'name email -_id').exec();
+        const data = await Data.find({},'name email isAdmin -_id').exec();
         res.status(200).render('home-view', {repository: data});
     } catch (e) {
         res.status(500).send({message: 'Failed to process your request'});
