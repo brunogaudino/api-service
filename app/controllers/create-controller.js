@@ -20,7 +20,8 @@ exports.createData = async(req, res) => {
     await repository.createData({
       name: req.body.name,
       email: req.body.email,
-      password: md5(req.body.password + global.SALT_KEY)
+      password: md5(req.body.password + global.SALT_KEY),
+      isAdmin: req.body.isAdmin
     })
     res.status(201).send({message: 'Info successfully registered'});
   } catch (e) {
@@ -29,14 +30,13 @@ exports.createData = async(req, res) => {
 }
 
 exports.authenticate = async(req, res, next) => {
-
   try {
       const data = await repository.authenticate({
         id: req.body.id,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        isAdmin: req.body.isAdmin
       });
-
       if (!data) {
         res.status(404).send({
           message: 'Username or Password is invalid'
@@ -47,7 +47,8 @@ exports.authenticate = async(req, res, next) => {
       const token = await authService.generateToken({
           id: data._id,
           email: data.email,
-          name: data.name
+          name: data.name,
+          isAdmin: data.isAdmin
       });
 
       res.status(201).send({
@@ -55,7 +56,8 @@ exports.authenticate = async(req, res, next) => {
           data: {
             id: data.id,
             email: data.email,
-            name: data.name
+            name: data.name,
+            isAdmin: data.isAdmin
           }
       });
   } catch (e) {
@@ -81,7 +83,8 @@ exports.refreshToken = async(req, res, next) => {
     const tokenData = await authService.generateToken({
       id: data.id,
       email: data.email,
-      name: data.name
+      name: data.name,
+      isAdmin: data.isAdmin
     });
 
     res.status(201).send({
@@ -90,7 +93,8 @@ exports.refreshToken = async(req, res, next) => {
         email: data.email,
         name: data.name,
         id: data.id,
-        password: data.password
+        password: data.password,
+        isAdmin: data.isAdmin
       }
     });
 

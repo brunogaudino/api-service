@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
     const data = JSON.stringify({
         name: "api-service",
         version: "1.0.0",
-        description: "A simple api crud service",
+        description: "A simple api service",
         author: "Bruno C. A. Gaudino",
         personalhomepage: "https://brunogaudino.github.io",
         url: "git+https://github.com/brunogaudino/api-service.git",

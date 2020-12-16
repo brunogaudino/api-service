@@ -13,4 +13,7 @@ router.post('/authenticate', controller.authenticate);
 //Auth refresh token using authorize method
 router.post('/refresh-token', authService.authorize, controller.refreshToken);
 
+//Auth isAdmin using isAdmin method
+router.post('/isadmin', authService.isAdmin, controller.createData);
+
 module.exports = router;

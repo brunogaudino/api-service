@@ -10,7 +10,8 @@ exports.authenticate = async(data) => {
   const res = await Data.findOne({
       id: data.id,
       email: data.email,
-      password: data.password
+      password: data.password,
+      isAdmin: data.isAdmin
   });
   return res;
 }

@@ -23,7 +23,13 @@ exports.authorize = function (req, res, next) {
                   message: 'Invalid Token'
               });
           } else {
-              next();
+              if (decoded.isAdmin == true) { //decoded.roles.includes('admin')
+                next();
+              } else {
+                res.status(403).json({
+                    message: 'This functionality is restricted for admin'
+                });
+              }
           }
       });
   }
@@ -31,7 +37,6 @@ exports.authorize = function (req, res, next) {
 
 exports.isAdmin = function (req, res, next) {
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
   if (!token) {
       res.status(401).json({
           message: 'Invalid Token'
@@ -43,7 +48,7 @@ exports.isAdmin = function (req, res, next) {
                   message: 'Invalid Token'
               });
           } else {
-              if (decoded.roles.includes('admin')) {
+              if (decoded.isAdmin == true) { //decoded.roles.includes('admin')
                   next();
               } else {
                   res.status(403).json({
