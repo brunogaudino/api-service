@@ -4,6 +4,7 @@ const ValidationService = require('../services/validation-service');
 const repository = require('../repositories/create-repository');
 const md5 = require('md5');
 const authService = require('../services/auth-service');
+const emailService = require('../services/email-service');
 
 exports.createData = async(req, res) => {
   let validation = new ValidationService();
@@ -23,6 +24,11 @@ exports.createData = async(req, res) => {
       password: md5(req.body.password + global.SALT_KEY),
       isAdmin: req.body.isAdmin
     })
+    // emailService.send(
+    //   req.body.email, 
+    //   'Welcome to API Service', 
+    //   global.EMAIL_TMPL.replace('{0}', req.body.name)
+    // );
     res.status(201).send({message: 'Info successfully registered'});
   } catch (e) {
     res.status(500).send({message: 'Failed to process your request'});
@@ -88,7 +94,7 @@ exports.refreshToken = async(req, res, next) => {
     });
 
     res.status(201).send({
-      token: token,
+      token: tokenData,
       data: {
         email: data.email,
         name: data.name,

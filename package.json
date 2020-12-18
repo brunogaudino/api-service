@@ -15,6 +15,7 @@
   "author": "Bruno C. A. Gaudino",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.4.0",
     "body-parser": "^1.12.3",
     "cors": "^2.8.5",
     "debug": "^4.1.1",

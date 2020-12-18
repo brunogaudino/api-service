@@ -22,7 +22,7 @@ main.use(function (req, res, next) {
 });
 
 // Database
-mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
+mongoose.connect(config.connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
