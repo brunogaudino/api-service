@@ -3,9 +3,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const config = require('../app/configs/config');
+const config = require('../src/configs/config');
 require('dotenv').config();
-const repository = require('../app/repositories/connection-repository');
+const repository = require('../src/repositories/connection-repository');
 
 const main = express();
 main.use(bodyParser.json({
@@ -37,17 +37,17 @@ mongoose.connect(config.connectionString, {
 const db = repository.connectionReturn(mongoose.connection);
 
 // Models
-const Data = require('../app/models/data-model');
+const Data = require('../src/models/data-model');
 
 // Routes 
-const indexRoute = require('../app/routes/index-route');
-const readRoute = require('../app/routes/read-route');
-const createRoute = require('../app/routes/create-route');
-const updateRoute = require('../app/routes/update-route');
-const deleteRoute = require('../app/routes/delete-route');
+const indexRoute = require('../src/routes/index-route');
+const readRoute = require('../src/routes/read-route');
+const createRoute = require('../src/routes/create-route');
+const updateRoute = require('../src/routes/update-route');
+const deleteRoute = require('../src/routes/delete-route');
 
 main.set('view engine', 'ejs');
-main.set('views', './app/views/');
+main.set('views', './src/views/');
 
 main.use('/', indexRoute);
 main.use('/create', createRoute);
