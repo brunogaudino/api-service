@@ -4,7 +4,7 @@ const ValidationService = require('../services/validation-service');
 const repository = require('../repositories/create-repository');
 const md5 = require('md5');
 const authService = require('../services/auth-service');
-const emailService = require('../services/email-service');
+//const emailService = require('../services/email-service');
 
 exports.createData = async(req, res) => {
   let validation = new ValidationService();
