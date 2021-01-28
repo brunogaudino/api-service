@@ -3,6 +3,6 @@ global.EMAIL_TMPL = 'Hello, <strong>{0}</strong> welcome to API Service!';
 
 module.exports = {
   connectionString: 'mongodb+srv://useradmin:JFXl1WYouvvukUcK@cluster0.nwmmr.mongodb.net/DataBase?retryWrites=true&w=majority',
-  sendgrIdKey: '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',
+  sendgrIdKey: 'TBD',
   containerConnectionString: 'TBD'
 }
